@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '../layout/Sidebar'
+import Sidebar from '../layout/Sidebar.layout'
 
 const Projects = () => {
   return (
@@ -10,7 +10,7 @@ const Projects = () => {
         <main>
 
           <div className="contenedor-tareas">
-              
+
           </div>
         </main>
       </div>
