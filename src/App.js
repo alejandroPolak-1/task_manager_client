@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import NewAccount from './components/auth/Login.auth'
-import Login from './components/auth/NewAccount.auth'
+import Login from './components/auth/Login.auth'
+import NewAccount from './components/auth/NewAccount.auth'
 import Projects from './components/projects/Projects'
 
 
