@@ -6,7 +6,7 @@ import ProjectReducer from './ProjectReducer.context'
 const ProjectState = props => {
     //for show sidebar-> newProject
     const initialState= {
-        form: true
+        form: false
     }
 
         
