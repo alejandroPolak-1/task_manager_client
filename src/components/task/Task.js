@@ -10,7 +10,7 @@ const Task = ({ task }) => {
              type="button" 
              className="completo"
           >
-            Full
+            Complete
           </button>
         ) : (
           <button 

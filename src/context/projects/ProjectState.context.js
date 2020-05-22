@@ -6,7 +6,7 @@ import ProjectReducer from './ProjectReducer.context'
 const ProjectState = props => {
     //for show sidebar-> newProject
     const initialState= {
-        form: false
+        form: true
     }
 
         
@@ -18,7 +18,7 @@ const ProjectState = props => {
    return (
        <ProjectContext.Provider 
             value = {{
-                form: state.newProject
+                form: state.form
             }}
        >
            {props.children}
