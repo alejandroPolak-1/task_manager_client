@@ -1,15 +1,22 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import Project from './Project'
 import ProjectContext from '../../context/projects/ProjectContext.context'
 
 const ListProjects = () => {
     
-   //Extract projects from initial state
+   //Extract projects a getProject from initial state
     const projectsContext = useContext(ProjectContext)
-    const {projects} = projectsContext
+    const {projects, getProjects} = projectsContext
+
+    //get project when load component
+    useEffect(()=>{
+      getProjects(projects)
+  }, [])
 
     //check if projects have content
     if(projects.length === 0) return null
+
+   
 
     return (
     <ul className="listado-proyectos">
