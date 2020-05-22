@@ -17,7 +17,7 @@ const FormTask = () => {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            value="Add Tast"
+            value="Add Task"
           />
         </div>
       </form>
