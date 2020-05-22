@@ -4,7 +4,7 @@ import ProjectContext from '../../context/projects/ProjectContext.context'
 const NewProject = () => {
   //Get form status
   const projectsContext = useContext(ProjectContext)
-  const {form, showForm} = projectsContext
+  const {form, showForm, addProject} = projectsContext
 
   //State for Project
   const [project, setProject] = useState({
@@ -27,10 +27,16 @@ const NewProject = () => {
     e.preventDefault()
 
     //Validate the project
-
+    if(name === '') {
+      return
+    }
     //Add to state
+    addProject(project)
 
     //restart the form
+    setProject({
+      name: ''
+    })
   }
 
   //To Show form  when click to new Project
