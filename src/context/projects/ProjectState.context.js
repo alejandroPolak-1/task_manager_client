@@ -7,6 +7,11 @@ import {FORM_PROJECT} from '../../types'
 const ProjectState = props => {
     //for show sidebar-> newProject
     const initialState= {
+        projects : [
+            { id:1, name: 'Play Store' },
+            { id:2, name: 'Study' },
+            { id:3,name: 'Teology' }
+          ],
         form: false
     }
 
@@ -24,6 +29,7 @@ const ProjectState = props => {
    return (
        <ProjectContext.Provider 
             value = {{
+                projects:state.projects,
                 form: state.form,
                 showForm
             }}
