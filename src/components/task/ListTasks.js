@@ -22,6 +22,13 @@ const ListTasks = () => {
             )))
         }
       </ul>
+
+      <button 
+            type="button"
+            className="btm btn-eliminar"
+            >
+                Delete Project &times;
+      </button>
     </Fragment>
   )
 }
