@@ -1,7 +1,19 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import Task from './Task'
+import ProjectContext from '../../context/projects/ProjectContext.context'
 
 const ListTasks = () => {
+
+      //Get form function
+      const projectsContext = useContext(ProjectContext)
+      const {project} = projectsContext
+
+      //So there is no element loaded, return null, show select aone elemnt
+     if(!project) return <h2>Select a project</h2>
+
+      //to extract the current project
+      const [actualProject] = project
+    
 
     const tasksProject = [
         {name: 'Select program', state: true},
@@ -10,9 +22,12 @@ const ListTasks = () => {
         {name: 'Select plataform', state: true}
     ]
 
+//Iif there is no project selected
+if(!project) return <h2>Select a project</h2>
+
   return (
     <Fragment>
-      <h2>Project: Play Store</h2>
+      <h2>Project: {actualProject.name} </h2>
 
       <ul className="listado-tareas">
         {(tasksProject.length === 0) 
