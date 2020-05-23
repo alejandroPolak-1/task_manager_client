@@ -1,70 +1,80 @@
-import React, {useReducer} from 'react';
-import {v4 as uuidv4} from 'uuid'
+import React, { useReducer } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 import ProjectContext from './ProjectContext.context'
 import ProjectReducer from './ProjectReducer.context'
-import {FORM_PROJECT, GET_PROJECTS, ADD_PROJECT} from '../../types'
+import {
+  FORM_PROJECT,
+  GET_PROJECTS,
+  ADD_PROJECT,
+  VALIDATE_FORM,
+} from '../../types'
 
+const ProjectState = (props) => {
+  const projects = [
+    { id: 1, name: 'Play Store' },
+    { id: 2, name: 'Study' },
+    { id: 3, name: 'Teology' },
+  ]
 
-const ProjectState = props => {
+  //for show sidebar-> newProject
+  const initialState = {
+    projects: [],
+    form: false,
+    errorform: false,
+  }
 
-    const projects = [
-        { id:1, name: 'Play Store' },
-        { id:2, name: 'Study' },
-        { id:3, name: 'Teology' }
-    ]
+  //Dispatch to execute actions
+  const [state, dispatch] = useReducer(ProjectReducer, initialState)
 
-    //for show sidebar-> newProject
-    const initialState= {
-        projects : [],
-        form: false
-    }
-
-      //Dispatch to execute actions
-   const [state, dispatch] = useReducer(ProjectReducer, initialState)
-
-   //function series for the CRUD
-   const showForm=() => {
+  //function series for the CRUD
+  const showForm = () => {
     dispatch({
-        type: FORM_PROJECT
+      type: FORM_PROJECT,
     })
-   }
+  }
 
-    //Get the projects
-    const getProjects = () =>{
-        dispatch({
-            type: GET_PROJECTS,
-            payload: projects
-        })
-    }
+  //Get the projects
+  const getProjects = () => {
+    dispatch({
+      type: GET_PROJECTS,
+      payload: projects,
+    })
+  }
 
-    //Add new Project
-    const addProject = project => {
-        project.id = uuidv4()
+  //Add new Project
+  const addProject = (project) => {
+    project.id = uuidv4()
 
-        //Insert the project in the state
-        dispatch({
-            type: ADD_PROJECT,
-            payload: project
-        })
-    }
-        
-   
+    //Insert the project in the state
+    dispatch({
+      type: ADD_PROJECT,
+      payload: project,
+    })
+  }
 
-   return (
-       <ProjectContext.Provider 
-            value = {{
-                projects:state.projects,
-                form: state.form,
-                showForm,
-                getProjects,
-                addProject
-            }}
-       >
-           {props.children}
-       </ProjectContext.Provider>
-   )
+  //Validate forms for errors
+  const showError=() => {
+      dispatch({
+          type: VALIDATE_FORM
+      })
+  }
 
+  return (
+    <ProjectContext.Provider
+      value={{
+        projects: state.projects,
+        form: state.form,
+        errorform: state.errorform,
+        showForm,
+        getProjects,
+        addProject,
+        showError
+      }}
+    >
+      {props.children}
+    </ProjectContext.Provider>
+  )
 }
 
 export default ProjectState
