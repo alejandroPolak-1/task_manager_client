@@ -9,16 +9,16 @@ const Project = ({ project }) => {
 
   //Get function contex task
   const tasksContext = useContext(taskContext)
-  const { getTasks } = taskContext
+  const { getTasks } = tasksContext
 
   //Funtion to add actual project
-  const handleOnClick = (id) => {
+  const handleOnClick = id => {
     actualProject(id) //fix a current project
     getTasks(id) //filter tasks when clicked
   }
   return (
     <li>
-      <button type="button" className="btn btn-blank" onClick={handleOnClick}>
+      <button type="button" className="btn btn-blank" onClick={()=>handleOnClick(project.id)}>
         {project.name}
       </button>
     </li>
