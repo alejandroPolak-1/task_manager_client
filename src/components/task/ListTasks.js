@@ -1,11 +1,11 @@
 import React, { Fragment, useContext } from 'react'
 import Task from './Task'
-import ProjectContext from '../../context/projects/projectContext'
+import projectContext from '../../context/projects/projectContext'
 
 const ListTasks = () => {
 
     //Get form function
-    const projectsContext = useContext(ProjectContext)
+    const projectsContext = useContext(projectContext)
     const {project, deleteProject} = projectsContext
 
     //Iif there is no project selected

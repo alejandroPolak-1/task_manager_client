@@ -1,10 +1,10 @@
 import React, {useContext} from 'react'
-import ProjectContext from '../../context/projects/projectContext'
+import projectContext from '../../context/projects/projectContext'
 
 const FormTask = () => {
 
    //Get if a project is active
-   const projectsContext = useContext(ProjectContext)
+   const projectsContext = useContext(projectContext)
    const {project} = projectsContext
 
    //If there is no select project, don't show FormTask

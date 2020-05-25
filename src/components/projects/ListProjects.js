@@ -1,11 +1,11 @@
 import React, {useContext, useEffect} from 'react'
 import Project from './Project'
-import ProjectContext from '../../context/projects/projectContext'
+import projectContext from '../../context/projects/projectContext'
 
 const ListProjects = () => {
     
    //Extract projects a getProject from initial state
-    const projectsContext = useContext(ProjectContext)
+    const projectsContext = useContext(projectContext)
     const {projects, getProjects} = projectsContext
 
     //get project when load component

@@ -31,7 +31,7 @@ const TaskState = (props) => {
   // gets the project tasks
   const getTasks= projectId =>{
       dispatch({
-          type: TASKS_PROJECT;
+          type: TASKS_PROJECT,
           payload: projectId
       })
   }

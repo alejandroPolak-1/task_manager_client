@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useContext } from 'react'
-import ProjectContext from '../../context/projects/projectContext'
+import projectContext from '../../context/projects/projectContext'
 
 const NewProject = () => {
   //Get form status
-  const projectsContext = useContext(ProjectContext)
+  const projectsContext = useContext(projectContext)
   const {form, errorform, showForm, addProject, showError} = projectsContext
 
   //State for Project
