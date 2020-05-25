@@ -15,12 +15,7 @@ const ListTasks = () => {
     const [actualProject] = project
     
 
-    const tasksProject = [
-        {name: 'Select program', state: true},
-        {name: 'Select type', state: false},
-        {name: 'Select color', state: false},
-        {name: 'Select plataform', state: true}
-    ]
+    const tasksProject = []
 
   //Delete a project
   const handleOnClick = ()=>{
