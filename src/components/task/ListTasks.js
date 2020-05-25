@@ -4,15 +4,15 @@ import ProjectContext from '../../context/projects/ProjectContext.context'
 
 const ListTasks = () => {
 
-      //Get form function
-      const projectsContext = useContext(ProjectContext)
-      const {project} = projectsContext
+    //Get form function
+    const projectsContext = useContext(ProjectContext)
+    const {project, deleteProject} = projectsContext
 
-      //So there is no element loaded, return null, show select aone elemnt
-     if(!project) return <h2>Select a project</h2>
+    //Iif there is no project selected
+    if(!project) return <h2>Select a project</h2>
 
-      //to extract the current project
-      const [actualProject] = project
+    //to extract the current project
+    const [actualProject] = project
     
 
     const tasksProject = [
@@ -22,8 +22,10 @@ const ListTasks = () => {
         {name: 'Select plataform', state: true}
     ]
 
-//Iif there is no project selected
-if(!project) return <h2>Select a project</h2>
+  //Delete a project
+  const handleOnClick = ()=>{
+    deleteProject(actualProject.id)
+  }
 
   return (
     <Fragment>
@@ -41,6 +43,7 @@ if(!project) return <h2>Select a project</h2>
       <button 
             type="button"
             className="btm btn-eliminar"
+            onClick={handleOnClick}
             >
                 Delete Project &times;
       </button>
