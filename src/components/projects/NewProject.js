@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useContext } from 'react'
-import ProjectContext from '../../context/projects/ProjectContext.context'
+import ProjectContext from '../../context/projects/projectContext'
 
 const NewProject = () => {
   //Get form status

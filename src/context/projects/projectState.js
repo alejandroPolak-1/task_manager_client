@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-import ProjectContext from './ProjectContext.context'
-import ProjectReducer from './ProjectReducer.context'
+import ProjectContext from './projectContext'
+import ProjectReducer from './projectReducer'
 import {
   FORM_PROJECT,
   GET_PROJECTS,
