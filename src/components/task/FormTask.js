@@ -7,20 +7,27 @@ const FormTask = () => {
   const projectsContext = useContext(projectContext)
   const { project } = projectsContext
 
-   //Get function contex task
-   const tasksContext = useContext(taskContext)
-   const { selectedtask, errortask, addTask, validateTask, getTasks } = tasksContext
+  //Get function contex task
+  const tasksContext = useContext(taskContext)
+  const {
+    selectedtask,
+    errortask,
+    addTask,
+    validateTask,
+    getTasks,
+    updateTask
+  } = tasksContext
 
-   //Effect that detects if there is a selected task
-   useEffect(() =>{
-      if(selectedtask !== null){
-        setTask(selectedtask)
-      } else {
-        setTask({
-          name: ''
-        })
-      }
-   }, [selectedtask])
+  //Effect that detects if there is a selected task
+  useEffect(() => {
+    if (selectedtask !== null) {
+      setTask(selectedtask)
+    } else {
+      setTask({
+        name: '',
+      })
+    }
+  }, [selectedtask])
 
   //State to the form. setTask to save the task
   const [task, setTask] = useState({
@@ -44,30 +51,35 @@ const FormTask = () => {
   //to extract the current project
   const [actualProject] = project
 
-  //
+  // submit form
   const handleOnSubmit = (e) => {
     e.preventDefault()
 
     //validate
-    if(name.trim() === '') {
+    if (name.trim() === '') {
       validateTask()
       return
     }
     //pass to validation -> utakReduer-> case ADD_TASK reset the state error -> errortask:false
 
-    //add new Task to state of task
-    task.projectId = actualProject.id
-    task.state= false
-    addTask(task)
+    //(check if it's an edit or if it's a new task)
+    if (selectedtask === null) {
+      //New Task- add new Task to state of task
+      task.projectId = actualProject.id
+      task.state = false
+      addTask(task)
+    } else {
+      //update existing task 
+      updateTask(task)
+    }
 
     //get task and filter it of actual project. this function take a projectId
     getTasks(actualProject.id)
 
     // reset form
     setTask({
-      name:''
+      name: '',
     })
-
   }
 
   return (
@@ -88,11 +100,13 @@ const FormTask = () => {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            value={selectedtask ? "Edit Task": "Add Task"}
+            value={selectedtask ? 'Edit Task' : 'Add Task'}
           />
         </div>
       </form>
-      { errortask ?<p className= "error mensaje">The name of the task is required</p> :null}
+      {errortask ? (
+        <p className="error mensaje">The name of the task is required</p>
+      ) : null}
     </div>
   )
 }
