@@ -15,7 +15,8 @@ const FormTask = () => {
     addTask,
     validateTask,
     getTasks,
-    updateTask
+    updateTask,
+    cleanTask
   } = tasksContext
 
   //Effect that detects if there is a selected task
@@ -71,6 +72,9 @@ const FormTask = () => {
     } else {
       //update existing task 
       updateTask(task)
+
+      //clean  o delete task selected to state
+      cleanTask()
     }
 
     //get task and filter it of actual project. this function take a projectId
