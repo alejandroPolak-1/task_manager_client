@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import projectContext from '../../context/projects/projectContext'
 import taskContext from '../../context/tasks/taskContext'
 
@@ -9,7 +9,18 @@ const FormTask = () => {
 
    //Get function contex task
    const tasksContext = useContext(taskContext)
-   const { errortask, addTask, validateTask, getTasks } = tasksContext
+   const { selectedtask, errortask, addTask, validateTask, getTasks } = tasksContext
+
+   //Effect that detects if there is a selected task
+   useEffect(() =>{
+      if(selectedtask !== null){
+        setTask(selectedtask)
+      } else {
+        setTask({
+          name: ''
+        })
+      }
+   }, [selectedtask])
 
   //State to the form. setTask to save the task
   const [task, setTask] = useState({
@@ -77,7 +88,7 @@ const FormTask = () => {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            value="Add Task"
+            value={selectedtask ? "Edit Task": "Add Task"}
           />
         </div>
       </form>
