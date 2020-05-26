@@ -3,6 +3,7 @@ import {
   ADD_TASK,
   VALIDATE_TASK,
   REMOVE_TASK,
+  STATE_TASK,
 } from '../../types/index'
 
 export default (state, action) => {
@@ -28,9 +29,13 @@ export default (state, action) => {
     case REMOVE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter(task=> task.id !== action.payload)
+        tasks: state.tasks.filter((task) => task.id !== action.payload),
       }
-
+    case STATE_TASK:
+      return {
+        ...state,
+        tasks: state.tasksproject.map((task) => task.id === action.payload.id ? action.payload : task),
+      }
     default:
       return state
   }

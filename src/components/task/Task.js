@@ -10,7 +10,7 @@ const Task = ({ task }) => {
 
     //Get function contex task
   const tasksContext = useContext(taskContext)
-  const { removeTask, getTasks } = tasksContext
+  const { removeTask, getTasks, changeStateTask } = tasksContext
 
   //destructuring project -> for to name for id
   const [actualProject] = project
@@ -19,6 +19,16 @@ const Task = ({ task }) => {
   const handleOnClickTaskRemove= id =>{
     removeTask(id)
     getTasks(actualProject.id) //actualProject = project[0]
+  }
+
+  //function to change the state of the tasks
+  const handleOnClickChangeState = task=> {
+      if(task.state) {
+        task.state= false
+      } else { 
+        task.state= true
+      }
+      changeStateTask(task)
   }
 
  
@@ -30,6 +40,7 @@ const Task = ({ task }) => {
           <button 
               type="button" 
               className="completo"
+              onClick= {() => handleOnClickChangeState(task)}
               >
             Complete
           </button>
@@ -37,6 +48,7 @@ const Task = ({ task }) => {
           <button 
               type="button" 
               className="incompleto"
+              onClick= {() => handleOnClickChangeState(task)}
               >
             Incomplete
           </button>
