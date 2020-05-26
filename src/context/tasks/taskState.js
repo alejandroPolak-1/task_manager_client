@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import TaskContext from './taskContext'
 import TaskReducer from './taskReducer'
 
-import { TASKS_PROJECT, ADD_TASK } from '../../types/index'
+import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK } from '../../types/index'
 
 const TaskState = (props) => {
   const initialState = {
@@ -21,7 +21,8 @@ const TaskState = (props) => {
       { name: 'Select type', state: false, projectId: 4 },
       { name: 'Select color', state: false, projectId: 3 },
     ],
-    tasksproject: null
+    tasksproject: null,
+    errortask: false
   }
 
   //create dispath and state
@@ -45,13 +46,22 @@ const TaskState = (props) => {
        })
      }
 
+     //(Validate and show if an error in case to need it)
+     const validateTask = () =>{
+       dispatch({
+         type: VALIDATE_TASK,
+  
+       })
+     }
   return (
     <TaskContext.Provider
       value={{
         tasks: state.tasks,
         tasksproject: state.tasksproject,
+        errortask: state.errortask,
         getTasks,
         addTask,
+        validateTask,
       }}
     >
       {props.children}

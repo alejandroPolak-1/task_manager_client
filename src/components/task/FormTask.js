@@ -9,9 +9,9 @@ const FormTask = () => {
 
    //Get function contex task
    const tasksContext = useContext(taskContext)
-   const { addTask } = tasksContext
+   const { errortask, addTask, validateTask, getTasks } = tasksContext
 
-  //State to the form
+  //State to the form. setTask to save the task
   const [task, setTask] = useState({
     name: '',
   })
@@ -38,15 +38,25 @@ const FormTask = () => {
     e.preventDefault()
 
     //validate
-
-    //pass to validation
+    if(name.trim() === '') {
+      validateTask()
+      return
+    }
+    //pass to validation -> utakReduer-> case ADD_TASK reset the state error -> errortask:false
 
     //add new Task to state of task
     task.projectId = actualProject.id
     task.state= false
     addTask(task)
 
+    //get task and filter it of actual project. this function take a projectId
+    getTasks(actualProject.id)
+
     // reset form
+    setTask({
+      name:''
+    })
+
   }
 
   return (
@@ -71,6 +81,7 @@ const FormTask = () => {
           />
         </div>
       </form>
+      { errortask ?<p className= "error mensaje">The name of the task is required</p> :null}
     </div>
   )
 }
