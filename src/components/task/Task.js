@@ -10,7 +10,7 @@ const Task = ({ task }) => {
 
     //Get function contex task
   const tasksContext = useContext(taskContext)
-  const { removeTask, getTasks, changeStateTask } = tasksContext
+  const { removeTask, getTasks, changeStateTask, saveActualTask} = tasksContext
 
   //destructuring project -> for to name for id
   const [actualProject] = project
@@ -31,6 +31,10 @@ const Task = ({ task }) => {
       changeStateTask(task)
   }
 
+  //Function to Edit task- It add a current task when the user wants to edit it
+  const handleOnClickSelectToEdit = task =>{
+      saveActualTask(task)
+  }
  
   return (
     <li className="tarea sombra">
@@ -59,6 +63,7 @@ const Task = ({ task }) => {
         <button 
             type="button" 
             className="btn btn-primario"
+            onClick={()=>handleOnClickSelectToEdit(task)}
             >
           Edit
         </button>

@@ -7,7 +7,8 @@ import {
   ADD_TASK,
   VALIDATE_TASK,
   REMOVE_TASK,
-  STATE_TASK
+  STATE_TASK,
+  ACTUAL_TASK
 } from '../../types/index'
 
 const TaskState = (props) => {
@@ -29,6 +30,7 @@ const TaskState = (props) => {
     ],
     tasksproject: null,
     errortask: false,
+    selectedtask: null
   }
 
   //create dispath and state
@@ -75,17 +77,28 @@ const TaskState = (props) => {
       })
   }
 
+  //extract a task for editing
+  const saveActualTask = task => {
+    dispatch({
+      type: ACTUAL_TASK,
+      payload: task
+    })
+  }
+
+
   return (
     <TaskContext.Provider
       value={{
         tasks: state.tasks,
         tasksproject: state.tasksproject,
         errortask: state.errortask,
+        selectedtask: state.selectedtask,
         getTasks,
         addTask,
         validateTask,
         removeTask,
-        changeStateTask
+        changeStateTask,
+        saveActualTask
       }}
     >
       {props.children}
