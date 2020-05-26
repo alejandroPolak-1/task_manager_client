@@ -21,6 +21,7 @@ const TaskState = (props) => {
       { name: 'Select type', state: false, projectId: 4 },
       { name: 'Select color', state: false, projectId: 3 },
     ],
+    tasksproject: null
   }
 
   //create dispath and state
@@ -40,6 +41,7 @@ const TaskState = (props) => {
     <TaskContext.Provider
       value={{
         tasks: state.tasks,
+        tasksproject: state.tasksproject,
         getTasks,
       }}
     >
