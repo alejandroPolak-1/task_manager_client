@@ -16,3 +16,9 @@ export const CLEAN_TASK = 'CLEAN_TASK'
 
 export const SHOW_ALERT = 'SHOW_ALERT'
 export const HIDEN_ALERT = 'HIDEN_ALERT'
+
+export const SUCCES_REGISTER = 'SUCCES_REGISTER'
+export const ERROR_REGISTER = 'ERROR_REGISTER'
+export const GET_USER = 'GET_USER'
+export const SUCCES_LOGIN = 'SUCCES_LOGIN'
+export const CLOSE_SESSION = 'CLOSE_SESSION'
