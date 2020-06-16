@@ -6,7 +6,7 @@ const NewAccount = () => {
   //extract value to context
   const alertContext = useContext(AlertContext)
   const { alert, showAlert } = alertContext
-         
+
   //State to Log in
   const [user, setUser] = useState({
     name: '',
@@ -37,12 +37,20 @@ const NewAccount = () => {
       confirm.trim() === ''
     ) {
       showAlert('All fields are required', 'alerta-error')
+      return
     }
 
     //password 6 characters minimum
+    if (password < 6) {
+      showAlert('The password must be at least 6 characters', 'alerta-error')
+      return
+    }
 
     //that the two passwords are the same
-
+    if (password !== confirm) {
+      showAlert("The passwords aren't the same", 'alerta-error')
+      return
+    }
     //pass to action
   }
 
