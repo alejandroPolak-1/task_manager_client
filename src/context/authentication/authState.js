@@ -7,9 +7,9 @@ import clientAxios from '../../config/axios'
 import {
   SUCCES_REGISTER,
   ERROR_REGISTER,
-  GET_USER,
-  SUCCES_LOGIN,
-  CLOSE_SESSION,
+//   GET_USER,
+//   SUCCES_LOGIN,
+//   CLOSE_SESSION,
 } from '../../types'
 
 const AuthState = (props) => {
@@ -17,7 +17,7 @@ const AuthState = (props) => {
     token: localStorage.getItem('token'),
     authenticated: null,
     user: null,
-    menssage: null,
+    message: null,
   }
 
   const [state, dispatch] = useReducer(AuthReducer, initialState)
@@ -26,16 +26,22 @@ const AuthState = (props) => {
   const registerUser = async dataset => {
       try {
           const response = await clientAxios.post('/api/users', dataset)
-          console.log(response)
-
+        //   console.log(response)
+        
           dispatch({
-              type: SUCCES_REGISTER
+              type: SUCCES_REGISTER,
+              payload: response.data
           })
       } catch (error) {
-          console.log(error)
+        //   console.log(error.response.data.msg)
+          const alert = {
+            msg: error.response.data.msg,
+            category: "alerta-error"
+        }
 
           dispatch({
-              type: ERROR_REGISTER
+              type: ERROR_REGISTER,
+              payload: alert
           })
       }
   }
@@ -46,7 +52,7 @@ const AuthState = (props) => {
         token: state.token,
         authenticated: state.authenticated,
         user: state.user,
-        menssage: state.menssage,
+        message: state.message,
         registerUser 
       }}
     >
