@@ -22,7 +22,7 @@ const AlertState = props => {
             }
         })
 
-        //Hiden alert
+        //Hiden alert later 5 seg
         setTimeout(() =>{
             dispatch({
                 type: HIDEN_ALERT

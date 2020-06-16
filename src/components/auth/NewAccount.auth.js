@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import AlertContext from '../../context/alerts/alertContext'
 
-const NewAccount= () => {
+const NewAccount = () => {
+  //extract value to context
+  const alertContext = useContext(AlertContext)
+  const { alert, showAlert } = alertContext
+         
   //State to Log in
   const [user, setUser] = useState({
-      name:'',
+    name: '',
     email: '',
     password: '',
-    confirm:''
+    confirm: '',
   })
 
   //Extract from user
@@ -18,7 +23,6 @@ const NewAccount= () => {
       ...user,
       [e.target.name]: e.target.value,
     })
-    console.log(user)
   }
 
   //When the user wants to login
@@ -26,6 +30,14 @@ const NewAccount= () => {
     e.preventDefault()
 
     //validate(that there are no empty fields)
+    if (
+      name.trim() === '' ||
+      email.trim() === '' ||
+      password.trim() === '' ||
+      confirm.trim() === ''
+    ) {
+      showAlert('All fields are required', 'alerta-error')
+    }
 
     //password 6 characters minimum
 
@@ -36,11 +48,14 @@ const NewAccount= () => {
 
   return (
     <div className="form-usuario">
+      {alert ? (
+        <div className={`alerta ${alert.category}`}> {alert.msg} </div>
+      ) : null}
       <div className="contenedor-form sombra-dark">
         <h1>Get new account</h1>
 
         <form onSubmit={handleSubmit}>
-        <div className="campo-form">
+          <div className="campo-form">
             <label htmlFor="name">Name</label>
             <input
               type="text"
@@ -50,7 +65,7 @@ const NewAccount= () => {
               value={name}
               onChange={handleOnChange}
             />
-            </div>
+          </div>
 
           <div className="campo-form">
             <label htmlFor="email">Email</label>
@@ -98,7 +113,7 @@ const NewAccount= () => {
         </form>
 
         <Link to={'/'} className="enlace-cuenta">
-            To return to login
+          To return to login
         </Link>
       </div>
     </div>
