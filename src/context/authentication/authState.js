@@ -26,14 +26,14 @@ const AuthState = (props) => {
   const registerUser = async dataset => {
       try {
           const response = await clientAxios.post('/api/users', dataset)
-        //   console.log(response)
+          console.log(response.data)
         
           dispatch({
               type: SUCCES_REGISTER,
               payload: response.data
           })
       } catch (error) {
-        //   console.log(error.response.data.msg)
+          console.log(error.response.data.msg)
           const alert = {
             msg: error.response.data.msg,
             category: "alerta-error"
