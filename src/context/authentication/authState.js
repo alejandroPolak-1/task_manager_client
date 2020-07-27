@@ -3,13 +3,15 @@ import AuthContext from './authContext'
 import AuthReducer from './authReducer'
 
 import clientAxios from '../../config/axios'
+import tokenAuth from '../../config/tokenAuth.config'
 
 import {
   SUCCES_REGISTER,
   ERROR_REGISTER,
-//   GET_USER,
-//   SUCCES_LOGIN,
-//   CLOSE_SESSION,
+  GET_USER,
+  SUCCES_LOGIN,
+  ERROR_LOGIN,
+  CLOSE_SESSION,
 } from '../../types'
 
 const AuthState = (props) => {
@@ -26,7 +28,7 @@ const AuthState = (props) => {
   const registerUser = async dataset => {
       try {
           const response = await clientAxios.post('/api/users', dataset)
-          console.log(response.data)
+          // console.log(response.data)
         
           dispatch({
               type: SUCCES_REGISTER,
@@ -36,7 +38,7 @@ const AuthState = (props) => {
           //get user authenticated
           userAuthenticated ()
       } catch (error) {
-          console.log(error.response.data.msg)
+          // console.log(error.response.data.msg)
           const alert = {
             msg: error.response.data.msg,
             category: "alerta-error"
@@ -49,16 +51,22 @@ const AuthState = (props) => {
       }
   }
 
-  //retunr the user authenticated
+  //return the user authenticated
   const userAuthenticated = async () => {
     const token = localStorage.getItem('token')
     if(token){
       // TODO: function for send token for headers
+          tokenAuth(token)
           }
     try {
       const response = await clientAxios.get('/api/auth')
-      console.log(response)
+      // console.log(response)
+      dispatch({
+        type: GET_USER,
+        payload: response.data.user
+      })
     } catch (error) {
+      console.log(error.response)
       dispatch({
         type: ERROR_LOGIN,
       })
