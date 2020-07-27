@@ -77,7 +77,14 @@ const AuthState = (props) => {
   const logIn = async dataset => {
     try {
       const response = await clientAxios.post('/api/auth', dataset)
-      console.log(response)
+      // console.log(response)
+      dispatch({
+        type: SUCCES_LOGIN,
+        payload: response.data  // for send the valid token 
+      })
+
+      //get user authenticated
+      userAuthenticated()
     } catch (error) {
       console.log(error.response.data.msg)
       const alert = {

@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import AlertContext from '../../context/alerts/alertContext'
 import AuthContext from '../../context/authentication/authContext'
 
-const Login = () => {
+const Login = (props) => {
  
   //extract value to context
   const alertContext = useContext(AlertContext)
@@ -11,6 +11,18 @@ const Login = () => {
  
   const authContext = useContext(AuthContext)
   const { message, authenticated, logIn } = authContext
+
+  //in case to password or user not exist
+useEffect(() =>{
+  if(authenticated){
+    props.history.push('/projects')
+  }
+
+  if(message){
+    showAlert(message.msg, message.category)
+  }
+
+}, [message, authenticated, props.history])
 
 
   //State to Log in
