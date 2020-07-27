@@ -32,6 +32,9 @@ const AuthState = (props) => {
               type: SUCCES_REGISTER,
               payload: response.data
           })
+
+          //get user authenticated
+          userAuthenticated ()
       } catch (error) {
           console.log(error.response.data.msg)
           const alert = {
@@ -45,6 +48,23 @@ const AuthState = (props) => {
           })
       }
   }
+
+  //retunr the user authenticated
+  const userAuthenticated = async () => {
+    const token = localStorage.getItem('token')
+    if(token){
+      // TODO: function for send token for headers
+          }
+    try {
+      const response = await clientAxios.get('/api/auth')
+      console.log(response)
+    } catch (error) {
+      dispatch({
+        type: ERROR_LOGIN,
+      })
+    }
+  }
+
 
   return (
     <AuthContext.Provider

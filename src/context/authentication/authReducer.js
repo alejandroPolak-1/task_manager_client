@@ -3,6 +3,7 @@ import {
   ERROR_REGISTER,
   GET_USER,
   SUCCES_LOGIN,
+  ERROR_LOGIN ,
   CLOSE_SESSION,
 } from '../../types'
 
@@ -15,7 +16,10 @@ export default (state, action) => {
           authenticated: true,
           message: null
       }
+
+      case ERROR_LOGIN:
       case ERROR_REGISTER:
+        localStorage.removeItem('token')
           return {
               ...state,
               token: null,
