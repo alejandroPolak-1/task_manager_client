@@ -21,8 +21,6 @@ useEffect(() =>{
     showAlert(message.msg, message.category)
   }
 
-
-
 }, [message, authenticated, props.history])
 
   //State to Log in
