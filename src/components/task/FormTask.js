@@ -66,8 +66,7 @@ const FormTask = () => {
     //(check if it's an edit or if it's a new task)
     if (selectedtask === null) {
       //New Task- add new Task to state of task
-      task.projectId = actualProject.id
-      task.state = false
+      task.project = actualProject._id
       addTask(task)
     } else {
       //update existing task 
