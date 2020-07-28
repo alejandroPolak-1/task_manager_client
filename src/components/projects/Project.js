@@ -18,7 +18,9 @@ const Project = ({ project }) => {
   }
   return (
     <li>
-      <button type="button" className="btn btn-blank" onClick={()=>handleOnClick(project.id)}>
+      <button type="button" 
+      className="btn btn-blank" 
+      onClick={()=>handleOnClick(project._id)}>
         {project.name}
       </button>
     </li>
