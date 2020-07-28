@@ -4,7 +4,7 @@ import AuthContext from '../../context/authentication/authContext'
 const Bar = () => {
      //Extract information to authentication
   const authContext = useContext(AuthContext)
-  const { user, userAuthenticated } = authContext
+  const { user, userAuthenticated, signOff } = authContext
 
   useEffect(() => {
     userAuthenticated()
@@ -16,7 +16,11 @@ const Bar = () => {
             
 
             <nav className="nav-principal">
-                <a href="#!">Sign off</a>
+                <button
+                className="btn btn-blank sign-off"
+                onClick={() => signOff()}
+                >
+                    Sign off</button>
             </nav>
         </header>
      );
