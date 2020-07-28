@@ -15,11 +15,7 @@ import {
 import clientAxios from '../../config/axios'
 
 const ProjectState = (props) => {
-  const projects = [
-    { id: 1, name: 'Play Store' },
-    { id: 2, name: 'Study' },
-    { id: 3, name: 'Teology' },
-  ]
+  
 
   //for show sidebar-> newProject
   const initialState = {
@@ -40,11 +36,17 @@ const ProjectState = (props) => {
   }
 
   //Get the projects
-  const getProjects = () => {
-    dispatch({
-      type: GET_PROJECTS,
-      payload: projects,
-    })
+  const getProjects = async() => {
+    try {
+      const result = await clientAxios.get('/api/projects')
+
+      dispatch({
+        type: GET_PROJECTS,
+        payload: result.data.projects,
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   //Add new Project
