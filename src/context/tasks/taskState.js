@@ -14,6 +14,7 @@ import {
   UPDATE_TASK,
   CLEAN_TASK
 } from '../../types/index'
+import Axios from 'axios'
 
 const TaskState = (props) => {
   const initialState = {
@@ -70,11 +71,18 @@ const TaskState = (props) => {
   }
 
  //Remove a Task
-  const removeTask = (id) => {
-    dispatch({
-      type: REMOVE_TASK,
-      payload: id
-    })
+  const removeTask = async (id, project) => {
+    try {
+      await Axios.delete(`/api/tasks/${id}`, {params: { project }}) 
+      
+      //Remove a Task
+      dispatch({
+        type: REMOVE_TASK,
+        payload: id
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   //change the state of each task

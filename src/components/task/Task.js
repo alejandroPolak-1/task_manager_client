@@ -17,7 +17,7 @@ const Task = ({ task }) => {
 
   //function that runs when the user presses the btn remove task 
   const handleOnClickTaskRemove= id =>{
-    removeTask(id)
+    removeTask(id, actualProject._id)
     getTasks(actualProject.id) //actualProject = project[0]
   }
 
@@ -70,7 +70,7 @@ const Task = ({ task }) => {
         <button 
               type="button" 
               className="btn btn-secundario"
-              onClick={() => handleOnClickTaskRemove(task.id)}
+              onClick={() => handleOnClickTaskRemove(task._id)}
               >
           Remove
         </button>
