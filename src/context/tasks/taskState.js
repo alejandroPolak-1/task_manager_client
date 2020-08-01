@@ -73,7 +73,7 @@ const TaskState = (props) => {
  //Remove a Task
   const removeTask = async (id, project) => {
     try {
-      await Axios.delete(`/api/tasks/${id}`, {params: { project }}) 
+         await clientAxios.delete(`/api/tasks/${id}`, {params: { project }}) 
       
       //Remove a Task
       dispatch({
@@ -86,11 +86,20 @@ const TaskState = (props) => {
   }
 
   //change the state of each task
-  const changeStateTask = task => {
+  //Edit o modify a task
+  const updateTask = async task =>{
+    // console.log(task)
+    try {
+    const result = await clientAxios.put(`/api/tasks/${task._id}`, task)
+      console.log(result)
+
       dispatch({
-        type: STATE_TASK,
-        payload: task
+        type: UPDATE_TASK,
+        payload: result.data.task
       })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   //extract a task for editing
@@ -101,13 +110,8 @@ const TaskState = (props) => {
     })
   }
 
-  //Edit o modify a task
-  const updateTask = task =>{
-    dispatch({
-      type: UPDATE_TASK,
-      payload: task
-    })
-  }
+   
+
 
   //Clean or delete task selectedtask
   const cleanTask =()=>{
@@ -127,7 +131,6 @@ const TaskState = (props) => {
         addTask,
         validateTask,
         removeTask,
-        changeStateTask,
         saveActualTask,
         updateTask,
         cleanTask

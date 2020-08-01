@@ -10,7 +10,7 @@ const Task = ({ task }) => {
 
     //Get function contex task
   const tasksContext = useContext(taskContext)
-  const { removeTask, getTasks, changeStateTask, saveActualTask} = tasksContext
+  const { removeTask, getTasks, updateTask, saveActualTask} = tasksContext
 
   //destructuring project -> for to name for id
   const [actualProject] = project
@@ -28,7 +28,7 @@ const Task = ({ task }) => {
       } else { 
         task.state= true
       }
-      changeStateTask(task)
+      updateTask(task)
   }
 
   //Function to Edit task- It add a current task when the user wants to edit it
