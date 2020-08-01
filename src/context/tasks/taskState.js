@@ -9,12 +9,11 @@ import {
   ADD_TASK,
   VALIDATE_TASK,
   REMOVE_TASK,
-  STATE_TASK,
   ACTUAL_TASK,
   UPDATE_TASK,
   CLEAN_TASK
 } from '../../types/index'
-import Axios from 'axios'
+
 
 const TaskState = (props) => {
   const initialState = {
