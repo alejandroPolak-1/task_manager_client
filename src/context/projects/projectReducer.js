@@ -22,7 +22,8 @@ export default (state, action) => {
         projects: action.payload,
       }
     case ADD_PROJECT:
-      return {
+      // console.log(action.payload)
+        return {
         ...state,
         projects: [...state.projects, action.payload],
         form: false,
@@ -34,7 +35,7 @@ export default (state, action) => {
         errorform: true,
       }
     case ACTUAL_PROJECT:
-      return {
+        return {
         ...state,
         project: state.projects.filter(
           (project) => project._id === action.payload,

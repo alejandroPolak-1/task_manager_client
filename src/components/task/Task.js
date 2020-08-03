@@ -3,10 +3,10 @@ import projectContext from '../../context/projects/projectContext'
 import taskContext from '../../context/tasks/taskContext'
 
 const Task = ({ task }) => {
-
-  //Get if a project is active
+    
+  //Get if a project is active  
     const projectsContext = useContext(projectContext)
-    const { project } = projectsContext
+    const { project } = projectsContext 
 
     //Get function contex task
   const tasksContext = useContext(taskContext)
@@ -76,6 +76,7 @@ const Task = ({ task }) => {
         </button>
       </div>
     </li>
+    
   )
 }
 

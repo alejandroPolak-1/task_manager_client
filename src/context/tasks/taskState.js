@@ -53,7 +53,7 @@ const TaskState = (props) => {
 
       dispatch({
         type: ADD_TASK,
-        payload: task,
+        payload: result.data.task,
       })
       
     } catch (error) {
@@ -73,7 +73,7 @@ const TaskState = (props) => {
   const removeTask = async (id, project) => {
     try {
          await clientAxios.delete(`/api/tasks/${id}`, {params: { project }}) 
-      
+          console.log(id)
       //Remove a Task
       dispatch({
         type: REMOVE_TASK,

@@ -102,9 +102,15 @@ const AuthState = (props) => {
   
   //sign-off to user
   const signOff = () => {
-    dispatch({
-      type: CLOSE_SESSION
-    })
+    try {
+
+      dispatch({
+        type: CLOSE_SESSION
+      })
+    } catch (error) {
+      console.log(error)
+    }
+   
   }
 
     return (

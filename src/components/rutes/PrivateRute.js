@@ -9,12 +9,11 @@ const PrivateRoute = ({ component: Component, ...props}) => {
 
     useEffect(() => {
         userAuthenticated()
-
-        //eslint-disable-next-line
+   //eslint-disable-next-line
     }, [] )
     
     return (
-        <Route { ...props } render={ props => !authenticated && !loading? (
+        <Route { ...props } render={ props => !authenticated && !loading ? (
             <Redirect to="/" />
         ) : (
             <Component {...props} />

@@ -16,6 +16,7 @@ export default (state, action) => {
         tasksproject: action.payload
       }
     case ADD_TASK:
+      console.log(action.payload)
       return {
         ...state,
         tasksproject: [action.payload, ...state.tasksproject],
