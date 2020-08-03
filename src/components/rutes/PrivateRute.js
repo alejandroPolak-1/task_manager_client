@@ -11,7 +11,7 @@ const PrivateRoute = ({ component: Component, ...props}) => {
         userAuthenticated()
 
         //eslint-disable-next-line
-    }, [userAuthenticated] )
+    }, [] )
     
     return (
         <Route { ...props } render={ props => !authenticated && !loading? (

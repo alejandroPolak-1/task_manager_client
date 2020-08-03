@@ -29,10 +29,10 @@ const TaskState = (props) => {
 
   // gets the project tasks
   const getTasks = async (project) => {
-    console.log(project)
+    // console.log(project)
     try {
       const result= await clientAxios.get('/api/tasks', { params : { project }})
-      console.log(result)
+      // console.log(result)
 
       dispatch({
         type: TASKS_PROJECT,
@@ -90,7 +90,7 @@ const TaskState = (props) => {
     // console.log(task)
     try {
     const result = await clientAxios.put(`/api/tasks/${task._id}`, task)
-      console.log(result)
+      // console.log(result)
 
       dispatch({
         type: UPDATE_TASK,
