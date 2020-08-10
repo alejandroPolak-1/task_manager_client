@@ -57,7 +57,7 @@ useEffect(() =>{
     }
 
     //password 6 characters minimum
-    if (password < 6) {
+    if (password.length < 6) {
       showAlert('The password must be at least 6 characters', 'alerta-error')
       return
     }
