@@ -1,27 +1,27 @@
-import React, { useState, useContext, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState, useContext, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import AlertContext from '../../context/alerts/alertContext'
 import AuthContext from '../../context/authentication/authContext'
 
 const NewAccount = (props) => {
   //extract value to context
   const alertContext = useContext(AlertContext)
-  const { alert, showAlert } = alertContext
- 
+  const {alert, showAlert} = alertContext
+
   const authContext = useContext(AuthContext)
-  const { message, authenticated, registerUser } = authContext
+  const {message, authenticated, registerUser} = authContext
 
-//in case the user has authenticated or registered or is a duplicate registration
-useEffect(() =>{
-  if(authenticated){
-    props.history.push('/projects')
-  }
+  //in case the user has authenticated or registered or is a duplicate registration
+  useEffect(() => {
+    if (authenticated) {
+      props.history.push('/projects')
+    }
 
-  if(message){
-    showAlert(message.msg, message.category)
-  }
-  //eslint-disable-next-line
-}, [message, authenticated, props.history])
+    if (message) {
+      showAlert(message.msg, message.category)
+    }
+    //eslint-disable-next-line
+  }, [message, authenticated, props.history])
 
   //State to Log in
   const [user, setUser] = useState({
@@ -32,7 +32,7 @@ useEffect(() =>{
   })
 
   //Extract from user
-  const { name, email, password, confirm } = user
+  const {name, email, password, confirm} = user
 
   const handleOnChange = (e) => {
     setUser({
@@ -70,78 +70,78 @@ useEffect(() =>{
     //pass to action
     registerUser({
       name,
-      email, 
-      password
+      email,
+      password,
     })
   }
 
   return (
-    <div className="form-usuario">
+    <div className='form-usuario'>
       {alert ? (
         <div className={`alerta ${alert.category}`}> {alert.msg} </div>
       ) : null}
-      <div className="contenedor-form sombra-dark">
+      <div className='contenedor-form sombra-dark'>
         <h1>Get new account</h1>
 
         <form onSubmit={handleSubmit}>
-          <div className="campo-form">
-            <label htmlFor="name">Name</label>
+          <div className='campo-form'>
+            <label htmlFor='name'>Name</label>
             <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Your name"
+              type='text'
+              id='name'
+              name='name'
+              placeholder='Your name'
               value={name}
               onChange={handleOnChange}
             />
           </div>
 
-          <div className="campo-form">
-            <label htmlFor="email">Email</label>
+          <div className='campo-form'>
+            <label htmlFor='email'>Email</label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Your e-mail"
+              type='email'
+              id='email'
+              name='email'
+              placeholder='Your e-mail'
               value={email}
               onChange={handleOnChange}
             />
           </div>
 
-          <div className="campo-form">
-            <label htmlFor="password">Password</label>
+          <div className='campo-form'>
+            <label htmlFor='password'>Password</label>
             <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Your password"
+              type='password'
+              id='password'
+              name='password'
+              placeholder='Your password'
               value={password}
               onChange={handleOnChange}
             />
           </div>
 
-          <div className="campo-form">
-            <label htmlFor="confirm">Confirm password</label>
+          <div className='campo-form'>
+            <label htmlFor='confirm'>Confirm password</label>
             <input
-              type="password"
-              id="confirm"
-              name="confirm"
-              placeholder="Repeat your password"
+              type='password'
+              id='confirm'
+              name='confirm'
+              placeholder='Repeat your password'
               value={confirm}
               onChange={handleOnChange}
             />
           </div>
 
-          <div className="campo-form">
+          <div className='campo-form'>
             <input
-              type="submit"
-              className="btn btn-primario btn-block"
-              value="Log up"
+              type='submit'
+              className='btn btn-primario btn-block'
+              value='Log up'
             />
           </div>
         </form>
 
-        <Link to={'/'} className="enlace-cuenta">
+        <Link to={'/'} className='enlace-cuenta'>
           To return to login
         </Link>
       </div>
