@@ -91,18 +91,31 @@ a {
   color: var(--blanco);
 }
 
+.contenedor-app {
+      display: flex;
+      flex-direction: column ;
+}
+
+
 @media (min-width: 768px) {
   .contenedor-app {
       display: flex;
+      flex-direction: row;
       min-height: 100vh;
+  }
+ 
+  .app-header {
+    order:0;
   }
 
   aside {
       background-color: var(--blanco);
       flex: 0 0 300px;
+      order: 0
   }
   .seccion-principal {
       flex: 1;
+      order: 2;
   }
 
 }
@@ -138,6 +151,7 @@ aside  {
 }
 .app-header {
   display: flex;
+  order: 0;
   justify-content: space-between;
   background-color: var(--gris2);
   padding: 4rem;
@@ -185,6 +199,7 @@ aside  {
 /** TAREAS LISTADO **/
 .contenedor-tareas {
   padding: 4rem;
+  order: 3;
 }
 
 
@@ -192,6 +207,7 @@ aside  {
 .listado-tareas {
   max-width: 600px;
   margin: 0 auto;
+  order: 4;
 }
 
 .tarea {
